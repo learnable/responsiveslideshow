@@ -1,0 +1,102 @@
+[00:00:12:514]
+Hello everyone. My name is Brett Romero. And, we're going to look at how to implement a Responsive Slide Show for your website. And a couple of reasons you might want to do this is to access a very large mobile audience so that now your slide show is viewable on mobile devices.
+
+[00:00:32:410]
+And then we're going to use a framework, because it's much quicker to use a framework then building it from scratch. The framework already has a lot of the code built in, and we just need to, make a few modifications to our website, so that the slide show presents our images, our photos and also presents them so that they're viewable on mobile devices.
+
+[00:00:56:430]
+So let's get started, and see how this is done. This is an example of a nicely done slide show. You can see, as I click through the dots down here, the different images come in. I've got buttons on the left and on the right that I can navigate through.
+
+[00:01:12:380]
+One problem is that as the screen gets smaller, you can see the images adjusting and that's fine. But when you start getting to really small screens, the images just get clipped. Which is what we don't want to happen on mobile devices. We're going to look at the ResponsiveSlides.js and see how to implement a responsive slide show using this framework.
+
+[00:01:35:290]
+I'm gonna scroll down to the bottom here and we're gonna go to a few examples. And see how they're doing it. Because you can see this is a very similar setup to what we just looked at. Now the difference being as the screen gets smaller, you can see the image is adjusting.
+
+[00:01:50:040]
+But as we go smaller and smaller and smaller, the image keeps adjusting and then we get to this nice size that's at a mobile screen width and we still can do complete navigation, we haven't lost that functionality, and scroll through all of our photos. So this is really great for mobile devices, and this is what we're going to implement.
+
+[00:02:12:640]
+The first thing we're gonna want to do is download the project files from this website. So, if you scroll down to the very bottom, you can see download the latest version from GitHub. And when you click over here, these are the three files that are going to be included plus you have the MD file.
+
+[00:02:32:443]
+The easiest thing to do is just download the zip file, which is right here in the bottom right corner. Once you do that, you can unzip it, and you'll end up with these files here, which are the same ones we just looked at on the website. I'm gonna start with a blank file, and I'm going to go ahead and save it to the same location that all of my files are in.
+
+[00:02:57:010]
+I'm just gonna call this Responsive Slides. And you can see I've already got the CSS and the JS files right here from the ZIP in the same folder. So that there's a, a way to reference them real easily. And if I go back to the website, there's a little bit of code we need to grab initially to get this working.
+
+[00:03:23:570]
+And right here is what we want first, this is JavaScript. This right here is actually the same as this up here except they've got all the options laid out for us which makes it a little easier to see what's going on. So, I'll put this in the head, and I'm going to do a script tag and I'll close it and just paste that in.
+
+[00:03:49:150]
+Now, I need to actually add some images, right here into the body section. And I have some code prepared to do that, and I'll just paste that in and turn on my live preview and here are the images. So, these images are also in the same folder as the JavaScript files and the CSS files.
+
+[00:04:10:400]
+To structure a little better you probably want to put all your CSS in a CSS folder, your JavaScript files in a JS folder and reference them that way. You can also see I've got my JavaScript inside of my head which, head tag which I would probably want to put this in a JS file and just link to it.
+
+[00:04:30:390]
+And the same is gonna be true for JavaScript. I'd probably just want to put that in a CSS file. But, just so we can see what's going on, I'm going to go ahead and just put it into the page like that. There's a little bit more code that we're going to, need as well.
+
+[00:04:44:900]
+They've got all of this CSS right here, that we're going to copy out. And this is the, images that I had copied earlier and pasted in. You can grab that from here. So, I'm going to copy this CSS. And we're going to paste that into a style tag.
+
+[00:05:07:322]
+I can just put that right above my script tag. And, you can see we're starting to get some dots on the edge of our images. So, some of the styling is already taking effect. Now, I want to get the reference to our files. I'm going to copy this piece of code here.
+
+[00:05:29:720]
+So, you can see I've got three sections. I've got one, I've got two, and then three. And those are the sections that you want to copy all of this code from. And I'll just paste that above our styling. This right here is the jQuery library and then this is going to be a minified version of the responsive slide JavaScript file that came in the Zep.
+
+[00:05:57:572]
+Actually I am just gonna reference the regular JavaScript file. I'm only doing that because there's not much difference in the size. The minified version just loads quicker, but because they're such similar sizes, it's not going to make that much of a difference. And you can also read this one because everything is not compressed together.
+
+[00:06:16:980]
+And, down here you can see there isn't much going on that has changed what is happening. But we're gonna work on that in a little bit here. We're gonna go back to the website and look at the examples, cuz that's what we want to eventually get to. And particularly this first example.
+
+[00:06:34:050]
+So, I'm gonna right click and do an inspect element to bring up the debugger and then I'll do inspect on this image here. And you can see some things going on. They've got this wrapper which is important. They've got this div right here which is this rslides_container and then here's the UL and then they've got their list items which we also have which are not decorated with all these attributes.
+
+[00:07:01:760]
+We're about to change a few things. Now if we open up the head here on their site. They're making use of this themes.css, which will also need to make use of, to produce this same kind of look. And then in the script that they have on their website.
+
+[00:07:21:843]
+They have they have this visual responsive slide show here, this is number one, then they have number two, and they have number three. And you can see they've also got this in their page one, two and three. What I want to do is actually copy out this number one.
+
+[00:07:39:560]
+Since that's the one we are trying to mimic, so I'm going to do a show page source, I'll just copy this right here, and go back to the editor, and inside of here I can just paste that over what we had earlier cause we are not actually going to use that.
+
+[00:08:01:880]
+We're going to use this one. I'm going to grab a little bit of their function code. Go back to our editor, paste down here, start the function. Now I need to close the function; and I'll grab this. And I only need one, already have another down there so we need two of these types of syntax.
+
+[00:08:28:850]
+So, we have now our r slides but we don't have an r slides down here, so we need to add a few things down here to get this going. We go back and look. That's all gonna come from the way they set it up here as well. So, if I inspect, we, we're gonna go ahead and add our wrapper.
+
+[00:08:51:700]
+We'll add our or slides container. But we're going to first add this themes. I've already downloaded this themes.css. And I'll just do a reference to it right up here. That's just gonna be a regular link reference and the relationship is style sheet and then I'll do a h ref to themes.css and then we're doing this 1.5 as well and that moves things over a little bit, and I'm gonna just keep working on that.
+
+[00:09:29:050]
+Now, we need to decorate our unordered list similar to what they were doing, and that should get us a lot closer. I'll go ahead and add this wrapper and this rslide_container. Just to get that out of the way. So, this div is an ID equals wrapper. We have another div.
+
+[00:09:53:999]
+rslides_container. I think this is actually a class. So, let's see, we have actually. Class yes, just on this one. So, I'll change this ID to a class and then we'll close these. Like that. So, not much visually changing there. But we'll keep going. And I'm just gonna make sure I do have my theme inside of that, our main folder here.
+
+[00:10:34:110]
+There it is, themes.css is in the same folder as our responsiveslides.html. Then there is a few things they had gong on with this unordered list. So, we'll start referencing classes. We had our, r slides. So, that's our JavaScript from above, which we have right there. And then there were a few other classes that they chained in here.
+
+[00:11:04:020]
+They had a centered.btns. Then they had this centered/btns1. And this ID was called slider1. And that comes from our slider1 that we have here. Actually pasted our JavaScript, our jQuery into a style tag which I don't want to do. I want it to go inside of our script tag.
+
+[00:11:36:940]
+So, I am going to just move our script tag up here. Like this. So that things are proper now. Okay so our slider1 is referencing this slider1, so that's an ID we have. In order for this slider1 code to work we actually need to wrap this inner function, which I am going to do now.
+
+[00:12:01:110]
+And then I'll grab this closing code here and close the function. So, now you can see we're starting to get our functionality. We still have a little bit of formatting issues here with this dot. So, we have our theme here and we also need our responses css. I think it's responsive slide.
+
+[00:12:21:440]
+Right there, responsive slide CSS. So, I'll just type that in "responsive slide CSS.". . And now the formatting looks much better and we have our full functionality. One last thing we want to do is add in a view port. And, I'm going to do that now with this meta code.
+
+[00:12:41:970]
+This is for mobile devices, so that, you don't have to pinch and zoom, to see anything. They'll just scale automatically to the proper size and width. And, that is our responsive slideshow. And, now that, if I go ahead and make this really small. You can see it still has the same functionality as we saw earlier, on the main web site.
+
+[00:13:05:460]
+And, again, you can get this from ResponsiveSlides.js. Just download the zip and follow the steps that we used here to implement your Responsive Slides and you'll get the same kind of result we have here. Thank you for watching.
+
